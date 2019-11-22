@@ -1,6 +1,6 @@
 //97-122 (lower)
             //65-90 (upper)
-
+function m(){
             var lengthOfPassword = prompt("What is the length of the password?");
             var specialChar = prompt("Would you like special character included?");
             var numericChar = prompt("Would you like numeric value included? ");
@@ -29,12 +29,20 @@
                password+=getRandomNumberBetweenTwoValues(1,10);
                lengthOfPassword--;}
            }
+           console.log(password);
+           return password;
+        }
          
-       console.log(password);
+      
       
        
 
 
 
-       var textBox=document.querySelector("#textArea").innerHTML;
-       textBox.innerHTML=password;
+       var textBox=document.querySelector("#textArea");
+    
+       var button=document.querySelector("#b");
+       button.addEventListener("click",function(){
+         
+       textBox.innerHTML=m();
+       });
