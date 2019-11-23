@@ -1,11 +1,10 @@
-//97-122 (lower)
-            //65-90 (upper)
+
 function m(){
             var lengthOfPassword = prompt("What is the length of the password?");
-            var specialChar = prompt("Would you like special character included?");
-            var numericChar = prompt("Would you like numeric value included? ");
-            var lowerCase = prompt("Would you like lower case included?");
-            var upperCase = prompt("Would you like upper case included?");
+            var specialChar = Boolean(confirm("Would you like special character included?"));
+            var numericChar = Boolean(confirm("Would you like numeric value included? "));
+            var lowerCase = Boolean(confirm("Would you like lower case included?"));
+            var upperCase = Boolean(confirm("Would you like upper case included?"));
             var password="";
 
            function getRandomNumberBetweenTwoValues (min, max){
@@ -14,31 +13,54 @@ function m(){
     
             var specialChar=["#","$","!","@","&","*","^"];
 
+            var arr=[];
+         //0 or <0 alert
+         //user has to select 1 from boolean
+         
+        if(specialChar){
+         for(var i=0; i<specialChar.length; i++){
+            arr.push(specialChar[i]);
+         }
+         }
+         if(upperCase){
+         for(var i=65; i<=90; i++){
+            arr.push(String.fromCharCode(i));
+         }
+      }
+
+         if(lowerCase){
+         for(var i=97; i<=122; i++){
+            arr.push(String.fromCharCode(i));
+         }
+      }
+
+         if(numericChar){
+         for(var i=0; i<=9; i++){
+            arr.push(i);
+         }
+         }
+
+         console.log("start")
+         for(var i=0; i<arr.length; i++){
+            console.log(arr[i]);
+         }
+         console.log("end");
+
            while(lengthOfPassword>=1){
-               if(specialChar){
-               password+=specialChar[getRandomNumberBetweenTwoValues(0,specialChar.length)];
-               lengthOfPassword--;
-               }
-               if(upperCase){
-               password+=String.fromCharCode(getRandomNumberBetweenTwoValues(65,90));
-               lengthOfPassword--;}
-               if(lowerCase){
-               password+=String.fromCharCode(getRandomNumberBetweenTwoValues(97,122));
-               lengthOfPassword--;}
-               if(numericChar){
-               password+=getRandomNumberBetweenTwoValues(1,10);
-               lengthOfPassword--;}
+              var index=getRandomNumberBetweenTwoValues(0,arr.length-1);
+              password+=arr[index];
+              console.log("Adding: "+password);
+              lengthOfPassword--;
            }
-           console.log(password);
+          // console.log(password);
+
+     
+
            return password;
         }
          
-      
-      
-       
 
-
-
+        
        var textBox=document.querySelector("#textArea");
     
        var button=document.querySelector("#b");
