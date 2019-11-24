@@ -1,25 +1,28 @@
 
 function m(){
-            var lengthOfPassword = prompt("What is the length of the password?");
+            var lengthOfPassword = parseInt(prompt("What is the length of the password?"));
+           
+           function getRandomNumberBetweenTwoValues (min, max){
+              return Math.floor(Math.random() * (max - min + 1) + min);
+           }
+    
+         
+         if(lengthOfPassword<=0){
+         alert("User has to enter password length more than 0 or choose at least one of the boolean question");
+         textBox.innerHTML="User has to enter password length more than1";
+         }else{
             var specialChar = Boolean(confirm("Would you like special character included?"));
             var numericChar = Boolean(confirm("Would you like numeric value included? "));
             var lowerCase = Boolean(confirm("Would you like lower case included?"));
             var upperCase = Boolean(confirm("Would you like upper case included?"));
             var password="";
-
-           function getRandomNumberBetweenTwoValues (min, max){
-              return Math.floor(Math.random() * (max - min + 1) + min);
-           }
-    
-            var specialChar=["#","$","!","@","&","*","^"];
-
             var arr=[];
-         //0 or <0 alert
-         //user has to select 1 from boolean
-         
+            var specialChars=["#","$","!","@","&","*","^"];
+
+            if(specialChar==true || numericChar==true || lowerCase==true || upperCase==true){
         if(specialChar){
-         for(var i=0; i<specialChar.length; i++){
-            arr.push(specialChar[i]);
+         for(var i=0; i<specialChars.length; i++){
+            arr.push(specialChars[i]);
          }
          }
          if(upperCase){
@@ -39,32 +42,36 @@ function m(){
             arr.push(i);
          }
          }
-
-         console.log("start")
-         for(var i=0; i<arr.length; i++){
-            console.log(arr[i]);
+           
+         while(lengthOfPassword>=1){
+            var index=getRandomNumberBetweenTwoValues(0,arr.length-1);
+            password+=arr[index];
+            lengthOfPassword--;
          }
-         console.log("end");
-
-           while(lengthOfPassword>=1){
-              var index=getRandomNumberBetweenTwoValues(0,arr.length-1);
-              password+=arr[index];
-              console.log("Adding: "+password);
-              lengthOfPassword--;
-           }
-          // console.log(password);
-
+      }else{
+         alert("User has to enter password length more than 0 or choose at least one of the boolean question");
+      }
      
-
+         }
            return password;
         }
          
 
-        
+   
+       
        var textBox=document.querySelector("#textArea");
-    
-       var button=document.querySelector("#b");
+       var button=document.querySelector("#generatePasswordButton");
        button.addEventListener("click",function(){
-         
        textBox.innerHTML=m();
+       });
+
+       
+       
+       var copyButton=document.querySelector("#copy");
+       copyButton.addEventListener("click",function(){
+         var copyText = document.getElementById("textArea");
+         copyText.select();
+         copyText.setSelectionRange(0, 99999)
+         document.execCommand("copy");
+         alert("Copied the text: " + copyText.value);
        });
