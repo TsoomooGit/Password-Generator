@@ -8,8 +8,9 @@ function m(){
     
          
          if(lengthOfPassword<=0){
-         alert("User has to enter password length more than 0 or choose at least one of the boolean question");
-         textBox.innerHTML="User has to enter password length more than1";
+         alert("ERROR: Password length must be more than 0!");
+         return;
+         //textBox.innerHTML="User has to enter password length more than1";
          }else{
             var specialChar = Boolean(confirm("Would you like special character included?"));
             var numericChar = Boolean(confirm("Would you like numeric value included? "));
@@ -49,7 +50,8 @@ function m(){
             lengthOfPassword--;
          }
       }else{
-         alert("User has to enter password length more than 0 or choose at least one of the boolean question");
+         alert("ERROR: At lease one type must be selected!");
+         return;
       }
      
          }
@@ -66,7 +68,7 @@ function m(){
        });
 
        
-       
+
        var copyButton=document.querySelector("#copy");
        copyButton.addEventListener("click",function(){
          var copyText = document.getElementById("textArea");
